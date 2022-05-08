@@ -34,6 +34,6 @@ public class Inventory {
         if(gold >= 0)
             this.gold = gold;
         else
-            throw new IllegalArgumentException("Gold must be 0 or higher");
+            throw new IllegalArgumentException("Gold must be equal to 0 or higher");
     }
 }

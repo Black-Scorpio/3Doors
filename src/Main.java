@@ -1,3 +1,5 @@
+import Sprites.Player;
+
 public class Main {
     public static void main(String[] args) {
 //        String text = "Hey..wake up..it's time for your journey";
@@ -10,5 +12,7 @@ public class Main {
 //                e.printStackTrace();
 //            }
 //        }
+
+        Player scorpio = new Player("Scorpio",100,"Spork");
     }
 }
