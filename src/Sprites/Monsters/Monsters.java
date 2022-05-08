@@ -11,9 +11,9 @@ public abstract class Monsters extends Sprite {
     }
 
     /**
-     * Every instance of Monster will need to have an attack method
-     * @return
+     * Amount of damage the Monster will hit
+     * @return - int
      */
-    abstract int attack();
+    abstract public int attack();
 
 }

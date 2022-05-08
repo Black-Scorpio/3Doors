@@ -11,16 +11,29 @@ public class SmallMonster extends Monsters{
         setName(name);
     }
 
+    /**
+     * Name must be one of "Snake","Rat","Chicken","Raccoon"
+     * @param name - String
+     */
     @Override
     public void setName(String name){
 
         List<String> smallNames = Arrays.asList("Snake","Rat","Chicken","Raccoon");
+        if(smallNames.contains(name))
+            this.name = name;
+        else
+            throw new IllegalArgumentException("The name " + name + "is not one of " + smallNames);
     }
 
+    /**
+     * Amount of damage the Monster will hit
+     * @return - int
+     */
+
     @Override
-    int attack() {
+    public int attack() {
         Random rand = new Random();
-        return rand.nextInt(3,12);
+        return rand.nextInt(3,10);
     }
 
 
