@@ -1,6 +1,8 @@
+package Storage;
+
 public class Inventory {
-    private int hpPotion;
-    private int gold;
+    private int hpPotion = 2; // start off with 2 potions
+    private int gold = 0;
 
     public Inventory(int hpPotion, int gold) {
         setHpPotion(hpPotion);
