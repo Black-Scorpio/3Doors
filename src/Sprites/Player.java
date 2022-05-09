@@ -2,6 +2,7 @@ package Sprites;
 
 
 import Storage.Inventory;
+import Storage.Store;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,13 +10,16 @@ import java.util.Random;
 
 
 public class Player extends Sprite{
-    private Inventory inventory;
+    private final Inventory inventory;
+    private Store store;
     private String weapon;
     Random rand = new Random();
 
     public Player(String name, int health, String weapon) {
         super(name, health);
         setWeapon(weapon);
+        inventory = new Inventory(2,0); // Start with 2 hpPotions and 0 gold
+        store = new Store(10); // Store contains 10 potions to purchase
     }
 
 
@@ -73,10 +77,93 @@ public class Player extends Sprite{
             if(health > 100)
                 health = 100;
             //Show how much health the player healed
-            System.out.printf("%s healed for %d hp!\nYou now have %d hp.", getName(), healAmount, getHealth());
+            System.out.printf("\n%s healed for %d hp!\nYou now have %d hp.", getName(), healAmount, getHealth());
 
         }
 
 
     }
-}
+
+    /**
+     * Purchase a weapon from the Store if the Player Inventory has enough gold
+     * @param weapon - String weapon to purchase from switch statement
+     *
+     */
+    public void buyWeapon(String weapon){
+        switch(weapon){
+            case "Spork", "Wooden Stick":
+                if(inventory.getGold() >= 3){
+                    inventory.setGold(inventory.getGold() - 3);
+                    System.out.printf("You've successfully purchased a %s, you now have %d gold",weapon, inventory.getGold());
+                }
+                else
+                    System.out.printf("You cannot afford a %s, you have %d gold.", weapon, inventory.getGold());
+                break;
+            case "Tennis Racket", "Baseball Bat":
+                if(inventory.getGold() >= 6){
+                    inventory.setGold(inventory.getGold() - 6);
+                    System.out.printf("You've successfully purchased a %s, you now have %d gold",weapon, inventory.getGold());
+                }
+                else
+                    System.out.printf("You cannot afford a %s, you have %d gold.", weapon, inventory.getGold());
+                break;
+            case "Dagger", "Sword":
+                if(inventory.getGold() >= 10){
+                    inventory.setGold(inventory.getGold() - 10);
+                    System.out.printf("You've successfully purchased a %s, you now have %d gold",weapon, inventory.getGold());
+                }
+                else
+                    System.out.printf("You cannot afford a %s, you have %d gold.", weapon, inventory.getGold());
+                break;
+            case "Spiked Ball":
+                if(inventory.getGold() >= 13){
+                    inventory.setGold(inventory.getGold() - 13);
+                    System.out.printf("You've successfully purchased a %s, you now have %d gold",weapon, inventory.getGold());
+                }
+                else
+                    System.out.printf("You cannot afford a %s, you have %d gold.", weapon, inventory.getGold());
+                break;
+
+            case "Legendary Hammer":
+                if(inventory.getGold() >= 20){
+                    inventory.setGold(inventory.getGold() - 20);
+                    System.out.printf("You've successfully purchased a %s, you now have %d gold",weapon, inventory.getGold());
+                }
+                else
+                    System.out.printf("You cannot afford a %s, you have %d gold.", weapon, inventory.getGold());
+                break;
+
+            case "Golden Spoon":
+                if(inventory.getGold() >= 30){
+                    inventory.setGold(inventory.getGold() - 30);
+                    System.out.printf("You've successfully purchased a %s, you now have %d gold",weapon, inventory.getGold());
+                }
+                else
+                    System.out.printf("You cannot afford a %s, you have %d gold.", weapon, inventory.getGold());
+                break;
+            default:
+                break;
+        }
+
+        }//end of buyWeapon method
+
+    /**
+     *
+     */
+    public void goldFound(){
+        int diceRoll = rand.nextInt(1,7);
+        int foundGold;
+
+        if(diceRoll <= 3) {
+            foundGold = rand.nextInt(1,5);
+            inventory.setGold(inventory.getGold() + foundGold);
+            System.out.printf("\nYou've found %d gold!", foundGold);
+        }
+        else if(diceRoll == 6){
+            foundGold = rand.nextInt(7,15);
+            inventory.setGold(inventory.getGold() + foundGold);
+            System.out.printf("\nIt's your lucky day you've found %d gold!", foundGold);
+        }
+    }//end of goldFound class
+
+}//end of class

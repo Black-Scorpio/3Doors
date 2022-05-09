@@ -14,5 +14,9 @@ public class Main {
 //        }
 
         Player scorpio = new Player("Scorpio",100,"Spork");
+
+        scorpio.buyWeapon("Dagger");
+        scorpio.heal();
+        scorpio.goldFound();
     }
 }
