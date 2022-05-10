@@ -95,6 +95,7 @@ public class Player extends Sprite{
                 if(inventory.getGold() >= 3){
                     inventory.setGold(inventory.getGold() - 3);
                     System.out.printf("You've successfully purchased a %s, you now have %d gold",weapon, inventory.getGold());
+                    setWeapon(weapon);
                 }
                 else
                     System.out.printf("You cannot afford a %s, you have %d gold.", weapon, inventory.getGold());
@@ -103,6 +104,7 @@ public class Player extends Sprite{
                 if(inventory.getGold() >= 6){
                     inventory.setGold(inventory.getGold() - 6);
                     System.out.printf("You've successfully purchased a %s, you now have %d gold",weapon, inventory.getGold());
+                    setWeapon(weapon);
                 }
                 else
                     System.out.printf("You cannot afford a %s, you have %d gold.", weapon, inventory.getGold());
@@ -111,6 +113,7 @@ public class Player extends Sprite{
                 if(inventory.getGold() >= 10){
                     inventory.setGold(inventory.getGold() - 10);
                     System.out.printf("You've successfully purchased a %s, you now have %d gold",weapon, inventory.getGold());
+                    setWeapon(weapon);
                 }
                 else
                     System.out.printf("You cannot afford a %s, you have %d gold.", weapon, inventory.getGold());
@@ -119,6 +122,7 @@ public class Player extends Sprite{
                 if(inventory.getGold() >= 13){
                     inventory.setGold(inventory.getGold() - 13);
                     System.out.printf("You've successfully purchased a %s, you now have %d gold",weapon, inventory.getGold());
+                    setWeapon(weapon);
                 }
                 else
                     System.out.printf("You cannot afford a %s, you have %d gold.", weapon, inventory.getGold());
@@ -128,6 +132,7 @@ public class Player extends Sprite{
                 if(inventory.getGold() >= 20){
                     inventory.setGold(inventory.getGold() - 20);
                     System.out.printf("You've successfully purchased a %s, you now have %d gold",weapon, inventory.getGold());
+                    setWeapon(weapon);
                 }
                 else
                     System.out.printf("You cannot afford a %s, you have %d gold.", weapon, inventory.getGold());
@@ -137,6 +142,7 @@ public class Player extends Sprite{
                 if(inventory.getGold() >= 30){
                     inventory.setGold(inventory.getGold() - 30);
                     System.out.printf("You've successfully purchased a %s, you now have %d gold",weapon, inventory.getGold());
+                    setWeapon(weapon);
                 }
                 else
                     System.out.printf("You cannot afford a %s, you have %d gold.", weapon, inventory.getGold());
@@ -148,7 +154,8 @@ public class Player extends Sprite{
         }//end of buyWeapon method
 
     /**
-     *
+     * Has a chance to
+     * randomly add an amount to the Player's Inventory
      */
     public void goldFound(){
         int diceRoll = rand.nextInt(1,7);

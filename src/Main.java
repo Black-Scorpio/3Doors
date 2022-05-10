@@ -1,22 +1,12 @@
+import Journey.Pathways;
 import Sprites.Player;
+import Storage.Store;
+
+import java.nio.file.Path;
 
 public class Main {
     public static void main(String[] args) {
-//        String text = "Hey..wake up..it's time for your journey";
-//        for(int i=0; i<text.length();i++){
-//
-//            System.out.print(text.charAt(i));
-//            try {
-//                Thread.sleep(100);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        }
-
-        Player scorpio = new Player("Scorpio",100,"Spork");
-
-        scorpio.buyWeapon("Dagger");
-        scorpio.heal();
-        scorpio.goldFound();
+        Pathways gameStart = new Pathways();
+        gameStart.startGame();
     }
 }
