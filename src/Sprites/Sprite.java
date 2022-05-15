@@ -39,6 +39,6 @@ public abstract class Sprite {
         else if(health < 0)
             this.health = 0;
         else
-            throw new IllegalArgumentException("The health points must be between 0-200 inclusive");
+            throw new IllegalArgumentException("The health points must be between 0-100 inclusive");
     }
 }

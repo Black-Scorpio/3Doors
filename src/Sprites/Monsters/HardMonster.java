@@ -32,11 +32,11 @@ public class HardMonster extends Monsters{
     @Override
     public int attack() {
         Random rand = new Random();
-        return rand.nextInt(10,25);
+        return rand.nextInt(8,20);
     }
 
     public int magicAttack(){
         Random rand = new Random();
-        return rand.nextInt(13,34);
+        return rand.nextInt(10,27);
     }
 }
