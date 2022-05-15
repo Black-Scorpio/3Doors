@@ -38,4 +38,12 @@ public class Inventory {
         else
             throw new IllegalArgumentException("Gold must be equal to 0 or higher");
     }
+
+    /**
+     * Display hpPotions and gold amount
+     */
+
+    public void checkInventory(){
+        System.out.printf("You have %d hp potion(s)\nYou have %d gold", getHpPotion(),getGold());
+    }
 }

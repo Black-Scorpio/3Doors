@@ -1,12 +1,14 @@
 package Sprites;
 
 
+import Sprites.Monsters.Monsters;
 import Storage.Inventory;
 import Storage.Store;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 
 public class Player extends Sprite{
@@ -14,7 +16,7 @@ public class Player extends Sprite{
     private Store store;
     private String weapon;
     Random rand = new Random();
-
+    Scanner in = new Scanner(System.in);
     public Player(String name, int health, String weapon) {
         super(name, health);
         setWeapon(weapon);
@@ -70,17 +72,22 @@ public class Player extends Sprite{
     public void heal(){
         int currentPotions = inventory.getHpPotion();
         int healAmount = rand.nextInt(20,51);
-        if(inventory.getHpPotion() > 0) {
+        if(inventory.getHpPotion() > 0 && getHealth() < 100) {
             currentPotions -= 1;
             inventory.setHpPotion(currentPotions);
             health += healAmount;
             if(health > 100)
                 health = 100;
             //Show how much health the player healed
-            System.out.printf("\n%s healed for %d hp!\nYou now have %d hp.", getName(), healAmount, getHealth());
+            System.out.printf("\n%s healed for %d hp!\nYou now have %d HP.", getName(), healAmount, getHealth());
 
         }
-
+        else if(getHealth() == 100){
+            System.out.println("You already have full HP!");
+        }
+        else if(inventory.getHpPotion() == 0){
+            System.out.println("\nYou have no more health potions left...uh oh.");
+        }
 
     }
 
@@ -172,5 +179,50 @@ public class Player extends Sprite{
             System.out.printf("\nIt's your lucky day you've found %d gold!", foundGold);
         }
     }//end of goldFound class
+
+    /**
+     * Entering combat with a monster until either it's health goes to 0 or Player's health goes to 0
+     * @param monster
+     */
+    public void fightMonster(Monsters monster){
+        System.out.printf("You've ran into a %s, time to fight!\n", monster.getName());
+
+        int userSelection;
+        while(getHealth() > 0 && monster.getHealth() > 0){
+            System.out.println("\nMake a choice, enter a number: \n1.Attack\n2.Use health potion\n3.Check inventory\n");
+            userSelection = in.nextInt();
+            //Fight
+            if(userSelection == 1){
+                int playerDamage = attack();
+                int monsterDamage = monster.attack();
+                //Player attack monster
+                monster.setHealth(monster.getHealth() - playerDamage);
+                if(monster.getHealth() > 0){
+                    System.out.printf(">>You attack the %s for %d damage! The %s now has %d HP!\n\n", monster.getName(), playerDamage,monster.getName() ,monster.getHealth());
+                    setHealth(getHealth() - monsterDamage);
+                    //Monster attacks player
+                    System.out.printf(">>The %s attacks you for %d damage! You now have %d HP!", monster.getName(),monsterDamage, getHealth());
+                    //Check if player is alive or dead
+                    if(getHealth() == 0){
+                        System.out.println(">>You suffered a fatal blow! You now have 0 HP! You have died...GAME OVER");
+                        System.exit(0);
+                    }
+                }
+                else {
+                    System.out.printf(">>You attack the %s for %d damage! The %s now has %d HP!\nYou have slain the %s!",
+                            monster.getName(), playerDamage,monster.getName() ,monster.getHealth(), monster.getName());
+                    goldFound();
+                }
+            }
+            else if(userSelection == 2){
+                heal();
+            }
+            else if(userSelection == 3){
+                inventory.checkInventory();
+            }
+
+        }
+    }
+
 
 }//end of class

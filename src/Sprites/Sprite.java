@@ -36,6 +36,8 @@ public abstract class Sprite {
     public void setHealth(int health) {
         if(health >= 0 && health <= 100)
             this.health = health;
+        else if(health < 0)
+            this.health = 0;
         else
             throw new IllegalArgumentException("The health points must be between 0-200 inclusive");
     }

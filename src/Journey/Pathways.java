@@ -1,5 +1,6 @@
 package Journey;
 
+import Sprites.Monsters.SmallMonster;
 import Sprites.Player;
 import java.util.Scanner;
 
@@ -8,6 +9,13 @@ public class Pathways {
     Scanner in = new Scanner(System.in);
     public void startGame(){
         introToGame();
+
+        //Create Road section
+        player.fightMonster(new SmallMonster("Rat",35));
+        //Create Grassy Section
+
+        //Keep on Road section
+
     }//end of start game class
 
     /**
@@ -28,8 +36,11 @@ public class Pathways {
         String characterName = in.nextLine();
         player.setName(characterName);
 
-        System.out.printf("Hi %s, nice to meet you..well..we'll meet soon anyway,\nI'll be waiting at the door for you!", player.getName());
+        System.out.printf("Hi %s, nice to meet you..well..we haven't met yet but we might soon,\nI'll be waiting at the door for you..just follow the path!\n", player.getName());
         next();
+
+
+
     }//End of intro class
 
 
@@ -37,15 +48,11 @@ public class Pathways {
      * This method to move onto the next line of text
      */
     public void next(){
-        System.out.println("\nPress any key to continue.");
+        System.out.println("\nPress enter to continue.");
         in.nextLine();
+
     }
 
-    //Create Road section
-
-    //Create Grassy Section
-
-    //Keep on Road section
 
 
 
